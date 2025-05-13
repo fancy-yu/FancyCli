@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+    "target": "ESNext",
+    "moduleResolution": "nodenext",
+    "module": "nodenext",
+    "esModuleInterop": true,
+    "downlevelIteration": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "experimentalDecorators": true, // 启用装饰器支持
+    "emitDecoratorMetadata": true   // 启用元数据生成
+  },
+  "exclude": ["node_modules", "**/lib/*", "**/es/*", "**/dist/*", "**/__tests__", "**/__test__", "**/demo"]
+}
