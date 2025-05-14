@@ -28,11 +28,6 @@ export const __dirname = path.dirname(__filename)
 
 export const IGNORE_CHECK_DIRS = ['node_modules', '.git', 'dist']
 
-export const UTILS_MANAGER_TYPES = {
-  CommonderConfig: Symbol('CommonderConfig'),
-  FileUtils: Symbol('FileUtils'),
-}
-
 export const errorTheme = chalk.bold.red
 export const successTheme = chalk.bold.green
 export const warnTheme = chalk.hex('#ffeb3b')

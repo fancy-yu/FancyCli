@@ -1,11 +1,11 @@
 import type { IDefaultConfig } from '../types/generate.js'
-import type { FileUtils } from './file.js'
 import fs from 'node:fs'
 import path, { dirname } from 'node:path'
 import { build } from 'esbuild'
 import { inject, injectable, LazyServiceIdentifier } from 'inversify'
 import { assign, attempt } from 'lodash'
-import { __dirname, __filename, DEFAULT_CONFIG, DEFAULT_CONFIG_FILE_NAMES, UTILS_MANAGER_TYPES } from '../const/index.js'
+import { __dirname, __filename, DEFAULT_CONFIG, DEFAULT_CONFIG_FILE_NAMES } from '../const/index.js'
+import { FileUtils } from './file.js'
 import { log } from './tools.js'
 
 @injectable()
@@ -14,10 +14,7 @@ export class CommonderConfig {
   fileName: string = ''
   userConfig: IDefaultConfig
   configFileType: 'yaml' | 'json' | 'ts' | '' = ''
-  constructor(
-      @inject(new LazyServiceIdentifier(() => UTILS_MANAGER_TYPES.FileUtils))
-      private F: FileUtils,
-  ) {}
+  @inject(FileUtils) private F: FileUtils
 
   private async getConfigPath() {
     const fileU = this.F

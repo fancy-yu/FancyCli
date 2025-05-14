@@ -11,7 +11,7 @@ export function generateAction({
   fileName,
   templateType,
 }) {
-  const cu = new CommanderUtilsManager()
+  const cu = CommanderUtilsManager.getInstance()
   const config = cu.C.config
   type === GType.HOOK && (fileName = `use${fileName}`)
   fileName = fileName.replace(/^./, match => match.toUpperCase())

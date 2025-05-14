@@ -4,7 +4,7 @@ import { exit, log } from '../utils/tools.js'
 import { program } from './program.js'
 
 export function createInitCommander() {
-  const cu = new CommanderUtilsManager()
+  const cu = CommanderUtilsManager.getInstance()
   program
     .command('init')
     .description('初始化默认配置')
