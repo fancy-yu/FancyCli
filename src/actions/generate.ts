@@ -13,8 +13,8 @@ export function generateAction({
 }) {
   const cu = CommanderUtilsManager.getInstance()
   const config = cu.C.config
-  type === GType.HOOK && (fileName = `use${fileName}`)
   fileName = fileName.replace(/^./, match => match.toUpperCase())
+  type === GType.HOOK && (fileName = `use${fileName}`)
   if (!config?.g?.[type]) {
     log.error(`读取配置失败，可以在根目录创建${underlineTheme(DEFAULT_CONFIG_FILE_NAMES[0])}文件, 执行${underlineTheme('f init')}可初始化默认配置，也可自行写入如下配置${JSON.stringify(DEFAULT_CONFIG, null, 2)}后重试`)
     exit(1)

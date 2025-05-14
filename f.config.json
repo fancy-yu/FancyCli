@@ -1,0 +1,12 @@
+{
+  "g": {
+    "hook": {
+      "dirName": "hooks",
+      "addIndexExport": false
+    },
+    "component": {
+      "dirName": "components",
+      "addIndexExport": true
+    }
+  }
+}

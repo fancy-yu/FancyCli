@@ -36,7 +36,7 @@ export class CommonderConfig {
       log.warn(`${this.fileName} 为空，将使用默认配置`)
     }
     const tmpConfig = attempt(JSON.parse, configStr, DEFAULT_CONFIG)
-    const config = assign(tmpConfig, DEFAULT_CONFIG)
+    const config = assign(DEFAULT_CONFIG, tmpConfig)
     log.info(`当前使用配置 -> \n ${JSON.stringify(config, null, 2)}`)
     this.userConfig = config
   }
