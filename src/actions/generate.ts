@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import { underlineTheme } from '../const/index.js'
+import { DEFAULT_CONFIG, DEFAULT_CONFIG_FILE_NAMES, underlineTheme } from '../const/index.js'
 import { getComponentTemplate } from '../template/components.template.js'
 import { getHookTemplate, getIndexTemplate } from '../template/hooks.template.js'
 import { GType } from '../types/generate.js'
@@ -15,6 +15,10 @@ export function generateAction({
   const config = cu.C.config
   type === GType.HOOK && (fileName = `use${fileName}`)
   fileName = fileName.replace(/^./, match => match.toUpperCase())
+  if (!config?.g?.[type]) {
+    log.error(`读取配置失败，可以在根目录创建${underlineTheme(DEFAULT_CONFIG_FILE_NAMES[0])}文件, 执行${underlineTheme('f init')}可初始化默认配置，也可自行写入如下配置${JSON.stringify(DEFAULT_CONFIG, null, 2)}后重试`)
+    exit(1)
+  }
   const { dirName, addIndexExport } = config.g[type]
   const targetRootDirPath = cu.F.resolvePath(`src/${dirName}`)
   const targetRootDirPathExist = cu.F.validateFileExist(targetRootDirPath)

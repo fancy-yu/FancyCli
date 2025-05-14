@@ -6,7 +6,7 @@ import { build } from 'esbuild'
 import { inject, injectable, LazyServiceIdentifier } from 'inversify'
 import { assign, attempt } from 'lodash'
 import { __dirname, __filename, DEFAULT_CONFIG, DEFAULT_CONFIG_FILE_NAMES, UTILS_MANAGER_TYPES } from '../const/index.js'
-import { getNotFoundMsg, log } from './tools.js'
+import { log } from './tools.js'
 
 @injectable()
 export class CommonderConfig {
@@ -36,19 +36,15 @@ export class CommonderConfig {
     const exist = this.F.validateFileExist(this.configPath)
     const configStr = exist ? this.F.readFile(this.configPath) : '{}'
     if (!configStr) {
-      log.warn(`${this.fileName} is empty, the default config will be used`)
+      log.warn(`${this.fileName} 为空，将使用默认配置`)
     }
     const tmpConfig = attempt(JSON.parse, configStr, DEFAULT_CONFIG)
     const config = assign(tmpConfig, DEFAULT_CONFIG)
-    log.info(`currnet config -> \n ${config}`)
+    log.info(`当前使用配置 -> \n ${JSON.stringify(config, null, 2)}`)
     this.userConfig = config
   }
 
   async bundleConfigFile() {
-    if (!this.configPath) {
-      getNotFoundMsg('configfile')
-      return
-    }
     const res = await build({
       format: 'esm',
       bundle: true,

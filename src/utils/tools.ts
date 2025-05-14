@@ -24,6 +24,4 @@ log.success = (msg: string) => log(successTheme(msg))
 log.info = (msg: string) => log(infoTheme(msg))
 log.underline = (msg: string) => log(underlineTheme(msg))
 
-export const getNotFoundMsg = (path: string) => log.error(`not found ${underlineTheme(path)}, the default config will be used`)
-
 export const exit = process.exit
